@@ -1,0 +1,8 @@
+--TEST--
+"intl_format" filter
+--TEMPLATE--
+{{ "This is the %integer time that the number %integer appear"|intl_format(4, 6000) }}
+--DATA--
+return []
+--EXPECT--
+This is the 4 time that the number 6.000 appear

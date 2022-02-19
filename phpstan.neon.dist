@@ -1,0 +1,11 @@
+parameters:
+    level: 8
+    paths:
+        - "%currentWorkingDirectory%/src/"
+        - "%currentWorkingDirectory%/tests/"
+    ignoreErrors:
+        -
+            message: '#Call to an undefined method [a-zA-Z0-9\\_]+::children\(\)#'
+            path: %currentWorkingDirectory%/src/DependencyInjection/Configuration.php
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon

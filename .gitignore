@@ -1,0 +1,14 @@
+/vendor/
+/phpunit.xml
+
+# Build data
+/build/
+
+# Composer PHAR
+/composer.phar
+/composer.lock
+
+Tests/Framework/var/logs
+Tests/Framework/var/cache
+
+infection-log.txt

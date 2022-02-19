@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="false"/>
+
+        <!-- budgegeria_intl.formatter tagged services -->
+
+        <instanceof id="Budgegeria\IntlFormat\Formatter\FormatterInterface">
+            <tag name="budgegeria_intl.formatter"/>
+            <bind key="$locale">%budgegeria_intl.locale%</bind>
+        </instanceof>
+
+        <service id="Budgegeria\IntlFormat\Formatter\CurrencySymbolFormatter" />
+
+        <service id="Budgegeria\IntlFormat\Formatter\ExceptionFormatter" />
+
+        <service id="Budgegeria\IntlFormat\Formatter\LocaleFormatter" />
+
+        <service id="Budgegeria\IntlFormat\Formatter\PrecisionNumberFormatter" />
+
+        <service id="Budgegeria\IntlFormat\Formatter\TimeZoneFormatter" />
+
+        <service id="Budgegeria\Bundle\IntlBundle\MessageNumberFormatter" class="Budgegeria\IntlFormat\Formatter\MessageFormatter">
+            <factory method="createNumberValueFormatter"/>
+        </service>
+
+        <service id="Budgegeria\Bundle\IntlBundle\MessageDateFormatter" class="Budgegeria\IntlFormat\Formatter\MessageFormatter">
+            <factory method="createDateValueFormatter"/>
+        </service>
+
+        <!-- services -->
+
+        <prototype namespace="Budgegeria\Bundle\IntlBundle\" resource="../../*" exclude="../../{DependencyInjection}"/>
+
+        <service id="Budgegeria\IntlFormat\MessageParser\SprintfParser"/>
+
+        <service id="Budgegeria\IntlFormat\IntlFormatInterface" alias="Budgegeria\IntlFormat\IntlFormat"/>
+
+        <service id="Budgegeria\IntlFormat\IntlFormat">
+            <argument tag="budgegeria_intl.formatter" type="tagged"/>
+            <argument type="service" id="Budgegeria\IntlFormat\MessageParser\SprintfParser"/>
+        </service>
+
+        <service id="Budgegeria\Bundle\IntlBundle\Twig\IntlFormatterExtension">
+            <bind key="$currency">%budgegeria_intl.currency%</bind>
+            <tag name="twig.extension"/>
+        </service>
+    </services>
+
+</container>
