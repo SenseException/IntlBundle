@@ -40,5 +40,10 @@
             "Budgegeria\\Bundle\\IntlBundle\\Tests\\": "tests"
         }
     },
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    }
 }
