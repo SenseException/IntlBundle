@@ -20,7 +20,8 @@ class BudgegeriaIntlExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(dirname(__DIR__).'/Resources/config'));
-        $loader->load('services.xml');
+        $loader->load('formatter.xml');
+        $loader->load('sorter.xml');
 
         $configuration = new Configuration();
         /** @phpstan-var array{locale: string, currency: string} $config */
