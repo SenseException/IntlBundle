@@ -10,8 +10,12 @@
         <service id="budgegeria_intl_bundle.sorter.builder.standard"
                  class="Budgegeria\IntlSort\Builder"
         >
-            <bind key="$currency">%budgegeria_intl.locale%</bind>
+            <argument type="string">%budgegeria_intl.locale%</argument>
+            <argument type="service" id="budgegeria_intl_bundle.sorter.factory.standard" />
         </service>
+
+        <service id="budgegeria_intl_bundle.sorter.factory.standard"
+                 class="Budgegeria\IntlSort\ComparatorFactory\Standard" />
     </services>
 
 </container>
