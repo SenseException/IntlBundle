@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Budgegeria\Bundle\IntlBundle\Tests;
+namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 
 use Budgegeria\Bundle\IntlBundle\BudgegeriaIntlBundle;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\BudgegeriaIntlExtension;
