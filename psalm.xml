@@ -32,6 +32,18 @@
                 <file name="src/DependencyInjection/Configuration.php" />
             </errorLevel>
         </MixedMethodCall>
+
+        <MixedAssignment>
+            <errorLevel type="suppress">
+                <file name="src/DependencyInjection/Configuration.php" />
+            </errorLevel>
+        </MixedAssignment>
+
+        <UndefinedMethod>
+            <errorLevel type="suppress">
+                <file name="src/DependencyInjection/Configuration.php" />
+            </errorLevel>
+        </UndefinedMethod>
     </issueHandlers>
 
     <plugins>
