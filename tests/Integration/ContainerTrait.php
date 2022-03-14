@@ -41,9 +41,9 @@ trait ContainerTrait
             ]
         ], $containerBuilder);
 
-        $containerBuilder->getDefinition(IntlFormat::class)->setPublic(true);
-        $containerBuilder->getDefinition(IntlFormatterExtension::class)->setPublic(true);
-        $containerBuilder->getDefinition('budgegeria_intl_bundle.sorter.builder.standard')->setPublic(true);
+        foreach ($containerBuilder->getDefinitions() as $definition) {
+            $definition->setPublic(true);
+        }
 
         $containerBuilder->compile();
 
