@@ -31,7 +31,13 @@ trait ContainerTrait
         $extension->load([
             'budgegeria_intl' => [
                 'locale' => 'en_US',
-                'currency' => 'USD'
+                'currency' => 'USD',
+                'sorter' => [
+                    'my_sorter' => [
+                        'order_by_desc' => true,
+                        'locale' => 'de_DE',
+                    ],
+                ],
             ]
         ], $containerBuilder);
 
