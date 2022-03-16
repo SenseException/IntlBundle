@@ -4,10 +4,12 @@ namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 
 use Budgegeria\Bundle\IntlBundle\BudgegeriaIntlBundle;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\BudgegeriaIntlExtension;
-use Budgegeria\Bundle\IntlBundle\Twig\IntlFormatterExtension;
-use Budgegeria\IntlFormat\IntlFormat;
+use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterConfigPass;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\HttpKernel\Kernel;
 
 trait ContainerTrait
 {
@@ -40,6 +42,8 @@ trait ContainerTrait
                 ],
             ]
         ], $containerBuilder);
+
+        (new SorterConfigPass())->process($containerBuilder);
 
         foreach ($containerBuilder->getDefinitions() as $definition) {
             $definition->setPublic(true);
