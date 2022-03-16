@@ -26,4 +26,21 @@ class SorterTest extends TestCase
 
         self::assertSame($expected, $sorted);
     }
+
+    /**
+     * @test
+     */
+    public function configuredSorterBuilderService(): void
+    {
+        /** @var \Budgegeria\IntlSort\Builder $builder */
+        $builder = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
+        $sorted = $builder->getSorter()->sort(['a', 'y', 'ä']);
+        $expected = [
+            1 => 'y',
+            2 => 'ä',
+            0 => 'a',
+        ];
+
+        self::assertSame($expected, $sorted);
+    }
 }

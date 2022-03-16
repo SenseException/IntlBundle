@@ -24,10 +24,11 @@ class BudgegeriaIntlExtension extends Extension
         $loader->load('sorter.xml');
 
         $configuration = new Configuration();
-        /** @phpstan-var array{locale: string, currency: string} $config */
+        /** @phpstan-var array{locale: string, currency: string, sorter: array<string, array<string, mixed>>} $config */
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('budgegeria_intl.locale', $config['locale']);
         $container->setParameter('budgegeria_intl.currency', $config['currency']);
+        $container->setParameter('budgegeria_intl.sorter', $config['sorter']);
     }
 }
