@@ -32,9 +32,9 @@ class SorterTest extends TestCase
      */
     public function configuredSorterBuilderService(): void
     {
-        /** @var \Budgegeria\IntlSort\Builder $builder */
-        $builder = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
-        $sorted = $builder->getSorter()->sort(['a', 'y', 'ä']);
+        /** @var \Budgegeria\IntlSort\Sorter\Sorter $sorter */
+        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
+        $sorted = $sorter->sort(['a', 'y', 'ä']);
         $expected = [
             1 => 'y',
             2 => 'ä',

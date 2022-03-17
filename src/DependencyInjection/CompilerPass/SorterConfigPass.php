@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass;
 
 use Budgegeria\IntlSort\Builder;
+use Budgegeria\IntlSort\Sorter\Sorter;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 class SorterConfigPass implements CompilerPassInterface
 {
     private const SERVICE_PREFIX = 'budgegeria_intl_bundle.sorter.';
+    private const SERVICE_FACTORY_PREFIX = 'budgegeria_intl_bundle.factory.sorter.';
 
     public function process(ContainerBuilder $container): void
     {
@@ -34,7 +37,12 @@ class SorterConfigPass implements CompilerPassInterface
                 $definition->addMethodCall($this->toCamelCase($methodName), [$value]);
             }
 
-            $container->setDefinition(self::SERVICE_PREFIX.$serviceSuffix, $definition);
+            $container->setDefinition(self::SERVICE_FACTORY_PREFIX.$serviceSuffix, $definition);
+
+            $definitionFactory = new Definition(Sorter::class);
+            $definitionFactory->setFactory([new Reference(self::SERVICE_FACTORY_PREFIX.$serviceSuffix), 'getSorter']);
+
+            $container->setDefinition(self::SERVICE_PREFIX.$serviceSuffix, $definitionFactory);
         }
     }
 
