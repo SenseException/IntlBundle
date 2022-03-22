@@ -43,4 +43,21 @@ class SorterTest extends TestCase
 
         self::assertSame($expected, $sorted);
     }
+
+    /**
+     * @test
+     */
+    public function configuredSorterBuilderServiceWithoutLocale(): void
+    {
+        /** @var \Budgegeria\IntlSort\Sorter\Sorter $sorter */
+        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.sorter_wo_locale');
+        $sorted = $sorter->sort(['a', 'y', 'ä']);
+        $expected = [
+            1 => 'y',
+            2 => 'ä',
+            0 => 'a',
+        ];
+
+        self::assertSame($expected, $sorted);
+    }
 }

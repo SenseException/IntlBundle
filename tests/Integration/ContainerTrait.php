@@ -39,6 +39,9 @@ trait ContainerTrait
                         'order_by_desc' => true,
                         'locale' => 'de_DE',
                     ],
+                    'sorter_wo_locale' => [
+                        'order_by_desc' => true,
+                    ],
                 ],
             ]
         ], $containerBuilder);
