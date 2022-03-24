@@ -5,11 +5,8 @@ namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 use Budgegeria\Bundle\IntlBundle\BudgegeriaIntlBundle;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\BudgegeriaIntlExtension;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterConfigPass;
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-use Symfony\Component\HttpKernel\Kernel;
 
 trait ContainerTrait
 {
