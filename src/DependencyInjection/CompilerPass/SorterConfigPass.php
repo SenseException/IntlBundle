@@ -48,6 +48,6 @@ class SorterConfigPass implements CompilerPassInterface
 
     private function toCamelCase(string $method): string
     {
-        return lcfirst(str_replace('_', '', ucwords($method, '_')));
+        return str_replace('_', '', ucwords($method, '_'));
     }
 }
