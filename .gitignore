@@ -12,3 +12,4 @@ Tests/Framework/var/logs
 Tests/Framework/var/cache
 
 infection-log.txt
+.phpunit.result.cache
