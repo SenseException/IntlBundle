@@ -4,6 +4,7 @@ namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 
 use Budgegeria\Bundle\IntlBundle\BudgegeriaIntlBundle;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\BudgegeriaIntlExtension;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
@@ -43,10 +44,15 @@ trait ContainerTrait
         ], $containerBuilder);
 
         (new BudgegeriaIntlBundle())->build($containerBuilder);
-
-        foreach ($containerBuilder->getDefinitions() as $definition) {
-            $definition->setPublic(true);
-        }
+        $publicCompilerPass = new class implements CompilerPassInterface {
+            public function process(ContainerBuilder $container): void
+            {
+                foreach ($container->getDefinitions() as $definition) {
+                    $definition->setPublic(true);
+                }
+            }
+        };
+        $containerBuilder->addCompilerPass($publicCompilerPass);
 
         $containerBuilder->compile();
 

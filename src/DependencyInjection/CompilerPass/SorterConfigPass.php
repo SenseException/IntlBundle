@@ -41,7 +41,6 @@ class SorterConfigPass implements CompilerPassInterface
 
             $definitionFactory = new Definition(Sorter::class);
             $definitionFactory->setFactory([new Reference(self::SERVICE_FACTORY_PREFIX.$serviceSuffix), 'getSorter']);
-            $definitionFactory->setPublic(true);
 
             $container->setDefinition(self::SERVICE_PREFIX.$serviceSuffix, $definitionFactory);
         }
