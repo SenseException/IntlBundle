@@ -13,7 +13,5 @@ class BudgegeriaIntlBundle extends Bundle
     public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new SorterConfigPass());
-
-        parent::build($container);
     }
 }

@@ -10,6 +10,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+use function array_keys;
+use function str_replace;
+use function ucwords;
 
 class SorterConfigPass implements CompilerPassInterface
 {
@@ -30,11 +33,8 @@ class SorterConfigPass implements CompilerPassInterface
 
             $definition = new Definition(Builder::class, [$locale]);
 
-            /**
-             * @var mixed $value
-             */
-            foreach ($sorterConfig as $methodName => $value) {
-                $definition->addMethodCall($this->toCamelCase($methodName), [$value]);
+            foreach (array_keys($sorterConfig) as $methodName) {
+                $definition->addMethodCall($this->toCamelCase($methodName));
             }
 
             $container->setDefinition(self::SERVICE_FACTORY_PREFIX.$serviceSuffix, $definition);

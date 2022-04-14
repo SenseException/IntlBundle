@@ -9,6 +9,12 @@
         "text": "infection-log.txt"
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+
+        "UnwrapUcWords": {
+            "ignore": [
+                "Budgegeria\\Bundle\\IntlBundle\\DependencyInjection\\CompilerPass\\SorterConfigPass::toCamelCase"
+            ]
+        }
     }
 }

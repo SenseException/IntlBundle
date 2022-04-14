@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 class SorterTest extends TestCase
 {
@@ -59,5 +60,14 @@ class SorterTest extends TestCase
         ];
 
         self::assertSame($expected, $sorted);
+    }
+
+    /**
+     * @test
+     */
+    public function internalSorterConfigIsRemovedAfterContainerIsCompiled(): void
+    {
+        $this->expectException(ParameterNotFoundException::class);
+        $this->createContainer()->getParameter('budgegeria_intl.sorter');
     }
 }
