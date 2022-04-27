@@ -22,12 +22,12 @@
         "symfony/twig-bundle": "^4.4 || ^5.0 || ^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.3",
-        "phpstan/phpstan": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "infection/infection": "^0.26.2",
-        "vimeo/psalm": "^4.7",
-        "psalm/plugin-phpunit": "^0.15",
+        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^1.6",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "infection/infection": "^0.26.8",
+        "vimeo/psalm": "^4.22",
+        "psalm/plugin-phpunit": "^0.16",
         "psalm/plugin-symfony": "^2.3"
     },
     "autoload": {
