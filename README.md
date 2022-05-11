@@ -67,4 +67,71 @@ Currency symbol of configured locale:
 
 ### Sorter
 
-tbd.
+Example for configuring a sorter:
+
+``` yaml
+budgegeria_intl:
+  locale: 'de_DE'
+  currency: 'EUR'
+  sorter:
+    sorter_wo_locale:
+      order_by_desc: ~
+    my_sorter:
+      order_by_desc: ~
+      locale: 'de_DE'
+```
+
+`my_sorter` and `sorter_wo_locale` are free choosable keys that will be used to create new service ids
+`budgegeria_intl_bundle.sorter.my_sorter` and `budgegeria_intl_bundle.sorter.sorter_wo_locale` which
+can be used as dependencies.
+
+``` php
+class Foo
+{
+    /**
+     * Injecting services "budgegeria_intl_bundle.sorter.my_sorter" or
+     * "budgegeria_intl_bundle.sorter.sorter_wo_locale"
+     */
+    public function __construct(private Budgegeria\IntlSort\Sorter\Sorter $sorter)
+    {
+    }
+    
+    public function bar(): void
+    {
+        $sortedArray = $this->sorter->sort(['a', 'y', 'ä']);
+    }
+}
+```
+
+#### Available Configurations
+
+Available are the method names of the `Budgegeria\IntlSort\Sorter\Sorter` class as underscore values.
+
+* enable_french_collation
+* disable_french_collation
+* lower_case_first
+* upper_case_first
+* remove_case_first
+* enable_normalization_mode
+* disable_normalization_mode
+* enable_numeric_collation
+* disable_numeric_collation
+* enable_case_level
+* disable_case_level
+* non_ignorable_alternate_handling
+* shifted_alternate_handling
+* primary_strength
+* secondary_strength
+* tertiary_strength
+* quaternary_strength
+* identical_strength
+* order_by_asc
+* order_by_desc
+* order_by_keys
+* order_by_values
+* null_first
+* null_last
+* remove_null_position
+
+Read more about the methods in the 
+[Sorter documentation](https://senseexception.github.io/intl-sort/sorter-builder.html).
