@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Budgegeria\Bundle\IntlBundle\Twig;
 
+use Budgegeria\IntlFormat\Exception\InvalidTypeSpecifierException;
 use Budgegeria\IntlFormat\IntlFormatInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -11,15 +12,9 @@ use Twig\TwigFunction;
 
 class IntlFormatterExtension extends AbstractExtension
 {
-    /**
-     * @var IntlFormatInterface
-     */
-    private $intlFormat;
+    private IntlFormatInterface $intlFormat;
 
-    /**
-     * @var string
-     */
-    private $currency;
+    private string $currency;
 
     public function __construct(IntlFormatInterface $intlFormat, string $currency)
     {
@@ -27,32 +22,33 @@ class IntlFormatterExtension extends AbstractExtension
         $this->currency   = $currency;
     }
 
-    public function getFilters()
+    /**
+     * @return TwigFilter[]
+     */
+    public function getFilters(): array
     {
         return [
             new TwigFilter('intl_format', [$this, 'format']),
         ];
     }
 
-    public function getFunctions()
+    /**
+     * @return TwigFunction[]
+     */
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('intl_format', [$this, 'format']),
-            new TwigFunction('currency_symbol', function () : string {
+            new TwigFunction('currency_symbol', function (): string {
                 return $this->intlFormat->format('%currency_symbol', $this->currency);
             }),
         ];
     }
 
     /**
-     * @param string $message
-     * @param mixed  ...$values
-     *
-     * @return string
-     *
-     * @throws \Budgegeria\IntlFormat\Exception\InvalidTypeSpecifierException
+     * @throws InvalidTypeSpecifierException
      */
-    public function format(string $message, ...$values) : string
+    public function format(string $message, mixed ...$values): string
     {
         return $this->intlFormat->format($message, ...$values);
     }

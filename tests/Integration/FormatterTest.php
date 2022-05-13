@@ -18,7 +18,7 @@ class FormatterTest extends TestCase
     /**
      * @test
      */
-    public function intlFormatterService() : void
+    public function intlFormatterService(): void
     {
         $container = $this->createContainer();
 
@@ -44,7 +44,7 @@ class FormatterTest extends TestCase
     /**
      * @test
      */
-    public function twigExtensionService() : void
+    public function twigExtensionService(): void
     {
         $container = $this->createContainer();
 

@@ -10,18 +10,18 @@ use Twig\Test\IntegrationTestCase;
 
 class IntlExtensionTest extends IntegrationTestCase
 {
-    public function getExtensions()
+    /**
+     * @return IntlFormatterExtension[]
+     */
+    public function getExtensions(): array
     {
         return [
             new IntlFormatterExtension((new Factory())->createIntlFormat('de_DE'), 'EUR'),
         ];
     }
 
-    /**
-     * @return string
-     */
-    protected function getFixturesDir()
+    protected function getFixturesDir(): string
     {
-        return __DIR__.'/Fixtures/';
+        return __DIR__ . '/Fixtures/';
     }
 }

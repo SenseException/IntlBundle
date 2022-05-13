@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Budgegeria\Bundle\IntlBundle\Tests\Integration;
 
+use Budgegeria\IntlSort\Builder;
+use Budgegeria\IntlSort\Sorter\Sorter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
@@ -16,9 +18,9 @@ class SorterTest extends TestCase
      */
     public function defaultSorterBuilderService(): void
     {
-        /** @var \Budgegeria\IntlSort\Builder $builder */
-        $builder = $this->createContainer()->get('budgegeria_intl_bundle.sorter.builder.standard');
-        $sorted = $builder->getSorter()->sort([2, 1, 3]);
+        /** @var Builder $builder */
+        $builder  = $this->createContainer()->get('budgegeria_intl_bundle.sorter.builder.standard');
+        $sorted   = $builder->getSorter()->sort([2, 1, 3]);
         $expected = [
             1 => 1,
             0 => 2,
@@ -33,9 +35,9 @@ class SorterTest extends TestCase
      */
     public function configuredSorterBuilderService(): void
     {
-        /** @var \Budgegeria\IntlSort\Sorter\Sorter $sorter */
-        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
-        $sorted = $sorter->sort(['a', 'y', 'ä']);
+        /** @var Sorter $sorter */
+        $sorter   = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
+        $sorted   = $sorter->sort(['a', 'y', 'ä']);
         $expected = [
             1 => 'y',
             2 => 'ä',
@@ -50,9 +52,9 @@ class SorterTest extends TestCase
      */
     public function configuredSorterBuilderServiceWithoutLocale(): void
     {
-        /** @var \Budgegeria\IntlSort\Sorter\Sorter $sorter */
-        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.sorter_wo_locale');
-        $sorted = $sorter->sort(['a', 'y', 'ä']);
+        /** @var Sorter $sorter */
+        $sorter   = $this->createContainer()->get('budgegeria_intl_bundle.sorter.sorter_wo_locale');
+        $sorted   = $sorter->sort(['a', 'y', 'ä']);
         $expected = [
             1 => 'y',
             2 => 'ä',

@@ -12,10 +12,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('budgegeria_intl');
 
@@ -32,8 +29,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('locale')->defaultValue('en_US')->end()
                 ->scalarNode('currency')->defaultValue('USD')->end()
-            ->end()
-        ;
+            ->end();
     }
 
     private function buildSorter(NodeDefinition $node): void

@@ -10,13 +10,14 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+
 use function array_keys;
 use function str_replace;
 use function ucwords;
 
 class SorterConfigPass implements CompilerPassInterface
 {
-    private const SERVICE_PREFIX = 'budgegeria_intl_bundle.sorter.';
+    private const SERVICE_PREFIX         = 'budgegeria_intl_bundle.sorter.';
     private const SERVICE_FACTORY_PREFIX = 'budgegeria_intl_bundle.factory.sorter.';
 
     public function process(ContainerBuilder $container): void
@@ -37,12 +38,12 @@ class SorterConfigPass implements CompilerPassInterface
                 $definition->addMethodCall($this->toCamelCase($methodName));
             }
 
-            $container->setDefinition(self::SERVICE_FACTORY_PREFIX.$serviceSuffix, $definition);
+            $container->setDefinition(self::SERVICE_FACTORY_PREFIX . $serviceSuffix, $definition);
 
             $definitionFactory = new Definition(Sorter::class);
-            $definitionFactory->setFactory([new Reference(self::SERVICE_FACTORY_PREFIX.$serviceSuffix), 'getSorter']);
+            $definitionFactory->setFactory([new Reference(self::SERVICE_FACTORY_PREFIX . $serviceSuffix), 'getSorter']);
 
-            $container->setDefinition(self::SERVICE_PREFIX.$serviceSuffix, $definitionFactory);
+            $container->setDefinition(self::SERVICE_PREFIX . $serviceSuffix, $definitionFactory);
         }
     }
 

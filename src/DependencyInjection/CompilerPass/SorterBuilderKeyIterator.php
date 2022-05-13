@@ -7,8 +7,11 @@ namespace Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass;
 use ArrayIterator;
 use FilterIterator;
 use ReflectionClass;
+use ReflectionMethod;
+
 use function assert;
 use function is_string;
+use function preg_replace;
 use function strtolower;
 
 class SorterBuilderKeyIterator extends FilterIterator
@@ -19,7 +22,7 @@ class SorterBuilderKeyIterator extends FilterIterator
     public function __construct(string $className)
     {
         $reflectionClass = new ReflectionClass($className);
-        $methods = $reflectionClass->getMethods(\ReflectionMethod::IS_PUBLIC);
+        $methods         = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
 
         parent::__construct(new ArrayIterator($methods));
     }
@@ -31,9 +34,9 @@ class SorterBuilderKeyIterator extends FilterIterator
             $this->current() !== '__construct';
     }
 
-    public function current()
+    public function current(): string
     {
-        /** @var \ReflectionMethod $reflectionMethod */
+        /** @var ReflectionMethod $reflectionMethod */
         $reflectionMethod = parent::current();
 
         return $this->toUnderscore($reflectionMethod->getName());
@@ -41,7 +44,7 @@ class SorterBuilderKeyIterator extends FilterIterator
 
     private function toUnderscore(string $methodName): string
     {
-        $methodName = preg_replace("/[A-Z]/", '_' . "$0", $methodName);
+        $methodName = preg_replace('/[A-Z]/', '_$0', $methodName);
         assert(is_string($methodName));
 
         return strtolower($methodName);

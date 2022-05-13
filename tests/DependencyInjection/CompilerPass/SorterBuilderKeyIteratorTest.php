@@ -1,17 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Budgegeria\Bundle\IntlBundle\Tests\DependencyInjection\CompilerPass;
 
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterBuilderKeyIterator;
 use Budgegeria\IntlSort\Builder;
 use PHPUnit\Framework\TestCase;
 
+use function array_values;
+use function iterator_to_array;
+
 class SorterBuilderKeyIteratorTest extends TestCase
 {
     public function testIterationContent(): void
     {
         $sorterKeys = iterator_to_array(new SorterBuilderKeyIterator(Builder::class));
-        $expected = [
+        $expected   = [
             'enable_french_collation',
             'disable_french_collation',
             'lower_case_first',
