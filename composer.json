@@ -29,7 +29,8 @@
         "vimeo/psalm": "^4.22",
         "psalm/plugin-phpunit": "^0.16",
         "psalm/plugin-symfony": "^2.3",
-        "doctrine/coding-standard": "^9.0"
+        "doctrine/coding-standard": "^9.0",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
         "psr-4": {
