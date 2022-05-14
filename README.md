@@ -103,6 +103,14 @@ class Foo
 }
 ```
 
+If a local is omitted like in `budgegeria_intl_bundle.sorter.sorter_wo_locale`,
+it uses the default locale set in the bundles configuration.
+
+``` yaml
+budgegeria_intl:
+  locale: 'de_DE'
+```
+
 #### Available Configurations
 
 Available are the method names of the `Budgegeria\IntlSort\Sorter\Sorter` class as underscore values.
