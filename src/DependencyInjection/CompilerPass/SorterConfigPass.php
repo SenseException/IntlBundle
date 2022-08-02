@@ -32,7 +32,8 @@ class SorterConfigPass implements CompilerPassInterface
             $locale = $sorterConfig['locale'] ?? $defaultLocale;
             unset($sorterConfig['locale']);
 
-            $definition = new Definition(Builder::class, [$locale]);
+            $factory    = $container->getDefinition('budgegeria_intl_bundle.sorter.factory.standard');
+            $definition = new Definition(Builder::class, [$locale, $factory]);
 
             foreach (array_keys($sorterConfig) as $methodName) {
                 $definition->addMethodCall($this->toCamelCase($methodName));
