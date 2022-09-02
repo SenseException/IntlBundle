@@ -31,6 +31,7 @@ class SorterBuilderKeyIterator extends FilterIterator
     {
         return $this->current() !== 'get_sorter' &&
             $this->current() !== 'get_comparator' &&
+            $this->current() !== 'create' &&
             $this->current() !== '__construct';
     }
 
