@@ -10,6 +10,7 @@ use ReflectionClass;
 use ReflectionMethod;
 
 use function assert;
+use function in_array;
 use function is_string;
 use function preg_replace;
 use function strtolower;
@@ -29,10 +30,12 @@ class SorterBuilderKeyIterator extends FilterIterator
 
     public function accept(): bool
     {
-        return $this->current() !== 'get_sorter' &&
-            $this->current() !== 'get_comparator' &&
-            $this->current() !== 'create' &&
-            $this->current() !== '__construct';
+        return ! in_array($this->current(), [
+            'get_sorter',
+            'get_comparator',
+            'create',
+            '__construct',
+        ], true);
     }
 
     public function current(): string
