@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 use function sys_get_temp_dir;
 
-trait ContainerTrait
+trait Container
 {
     private function createContainer(): ContainerBuilder
     {

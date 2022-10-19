@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class FormatterTest extends TestCase
 {
-    use ContainerTrait;
+    use Container;
 
     /**
      * @test

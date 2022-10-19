@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 class SorterTest extends TestCase
 {
-    use ContainerTrait;
+    use Container;
 
     /**
      * @test
