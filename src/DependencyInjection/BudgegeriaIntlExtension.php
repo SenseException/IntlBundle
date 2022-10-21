@@ -13,9 +13,7 @@ use function dirname;
 
 class BudgegeriaIntlExtension extends Extension
 {
-    /**
-     * @param mixed[] $configs
-     */
+    /** @param mixed[] $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new XmlFileLoader($container, new FileLocator(dirname(__DIR__) . '/Resources/config'));

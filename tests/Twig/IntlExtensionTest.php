@@ -10,9 +10,7 @@ use Twig\Test\IntegrationTestCase;
 
 class IntlExtensionTest extends IntegrationTestCase
 {
-    /**
-     * @return IntlFormatterExtension[]
-     */
+    /** @return IntlFormatterExtension[] */
     public function getExtensions(): array
     {
         return [

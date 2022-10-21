@@ -13,9 +13,7 @@ class SorterTest extends TestCase
 {
     use Container;
 
-    /**
-     * @test
-     */
+    /** @test */
     public function defaultSorterBuilderService(): void
     {
         /** @var Builder $builder */
@@ -30,9 +28,7 @@ class SorterTest extends TestCase
         self::assertSame($expected, $sorted);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function configuredSorterBuilderService(): void
     {
         /** @var Sorter $sorter */
@@ -47,9 +43,7 @@ class SorterTest extends TestCase
         self::assertSame($expected, $sorted);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function configuredSorterBuilderServiceWithoutLocale(): void
     {
         /** @var Sorter $sorter */
@@ -64,9 +58,7 @@ class SorterTest extends TestCase
         self::assertSame($expected, $sorted);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function internalSorterConfigIsRemovedAfterContainerIsCompiled(): void
     {
         $this->expectException(ParameterNotFoundException::class);

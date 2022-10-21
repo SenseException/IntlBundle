@@ -15,9 +15,7 @@ class FormatterTest extends TestCase
 {
     use Container;
 
-    /**
-     * @test
-     */
+    /** @test */
     public function intlFormatterService(): void
     {
         $container = $this->createContainer();
@@ -41,9 +39,7 @@ class FormatterTest extends TestCase
         self::assertSame('You have 10$.', $intlFormat->format('You have 10%currency_symbol.', ''));
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function twigExtensionService(): void
     {
         $container = $this->createContainer();

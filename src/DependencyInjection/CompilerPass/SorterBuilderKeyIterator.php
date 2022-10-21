@@ -17,9 +17,7 @@ use function strtolower;
 
 class SorterBuilderKeyIterator extends FilterIterator
 {
-    /**
-     * @phpstan-param class-string $className
-     */
+    /** @phpstan-param class-string $className */
     public function __construct(string $className)
     {
         $reflectionClass = new ReflectionClass($className);

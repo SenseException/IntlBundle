@@ -12,19 +12,11 @@ use Twig\TwigFunction;
 
 class IntlFormatterExtension extends AbstractExtension
 {
-    private IntlFormatInterface $intlFormat;
-
-    private string $currency;
-
-    public function __construct(IntlFormatInterface $intlFormat, string $currency)
+    public function __construct(private IntlFormatInterface $intlFormat, private string $currency)
     {
-        $this->intlFormat = $intlFormat;
-        $this->currency   = $currency;
     }
 
-    /**
-     * @return TwigFilter[]
-     */
+    /** @return TwigFilter[] */
     public function getFilters(): array
     {
         return [
@@ -32,9 +24,7 @@ class IntlFormatterExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @return TwigFunction[]
-     */
+    /** @return TwigFunction[] */
     public function getFunctions(): array
     {
         return [
@@ -45,9 +35,7 @@ class IntlFormatterExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @throws InvalidTypeSpecifierException
-     */
+    /** @throws InvalidTypeSpecifierException */
     public function format(string $message, mixed ...$values): string
     {
         return $this->intlFormat->format($message, ...$values);
