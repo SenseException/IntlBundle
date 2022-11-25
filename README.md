@@ -21,7 +21,7 @@ bundles.php manually:
 
 ``` php
 return [
-    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    // ...
     Budgegeria\Bundle\IntlBundle\BudgegeriaIntlBundle::class => ['all' => true],
     // ...
 ];
@@ -43,20 +43,23 @@ budgegeria_intl:
 
 ### Formatter
 
+The [formatter](https://senseexception.github.io/intl-format/#predefined-formats) can be used in two different ways: 
+With a filter and a function
+
 #### Filters
 
 Internationalization text formatting:
 ``` twig
-{{ "This is the %ordinal time that the number %integer appear"|intl_format(4, 6000) }}
-{# This is the 4th time that the number 6.000 appear #}
+{{ "This is the %ordinal time that the number %integer appears"|intl_format(4, 6000) }}
+{# This is the 4th time that the number 6.000 appears #}
 ```
 
 #### Functions
 
 Internationalization text formatting:
 ``` twig
-{{ intl_format("This is the %ordinal time that the number %integer appear", 4, 6000) }}
-{# This is the 4th time that the number 6.000 appear #}
+{{ intl_format("This is the %ordinal time that the number %integer appears", 4, 6000) }}
+{# This is the 4th time that the number 6.000 appears #}
 ```
 
 Currency symbol of configured locale:
