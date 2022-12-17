@@ -45,6 +45,12 @@
                 <file name="src/DependencyInjection/Configuration.php" />
             </errorLevel>
         </UndefinedMethod>
+
+        <MissingTemplateParam>
+            <errorLevel type="suppress">
+                <file name="src/DependencyInjection/CompilerPass/SorterBuilderKeyIterator.php" />
+            </errorLevel>
+        </MissingTemplateParam>
     </issueHandlers>
 
     <plugins>
