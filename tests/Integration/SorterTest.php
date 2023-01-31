@@ -9,6 +9,8 @@ use Budgegeria\IntlSort\Sorter\Sorter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
+use function assert;
+
 class SorterTest extends TestCase
 {
     use Container;
@@ -16,8 +18,8 @@ class SorterTest extends TestCase
     /** @test */
     public function defaultSorterBuilderService(): void
     {
-        /** @var Builder $builder */
-        $builder  = $this->createContainer()->get('budgegeria_intl_bundle.sorter.builder.standard');
+        $builder = $this->createContainer()->get('budgegeria_intl_bundle.sorter.builder.standard');
+        assert($builder instanceof Builder);
         $sorted   = $builder->getSorter()->sort([2, 1, 3]);
         $expected = [
             1 => 1,
@@ -31,8 +33,8 @@ class SorterTest extends TestCase
     /** @test */
     public function configuredSorterBuilderService(): void
     {
-        /** @var Sorter $sorter */
-        $sorter   = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
+        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.my_sorter');
+        assert($sorter instanceof Sorter);
         $sorted   = $sorter->sort(['a', 'y', 'ä']);
         $expected = [
             1 => 'y',
@@ -46,8 +48,8 @@ class SorterTest extends TestCase
     /** @test */
     public function configuredSorterBuilderServiceWithoutLocale(): void
     {
-        /** @var Sorter $sorter */
-        $sorter   = $this->createContainer()->get('budgegeria_intl_bundle.sorter.sorter_wo_locale');
+        $sorter = $this->createContainer()->get('budgegeria_intl_bundle.sorter.sorter_wo_locale');
+        assert($sorter instanceof Sorter);
         $sorted   = $sorter->sort(['a', 'y', 'ä']);
         $expected = [
             1 => 'y',

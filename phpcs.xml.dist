@@ -9,8 +9,4 @@
     <file>tests</file>
 
     <rule ref="Doctrine"/>
-
-    <rule ref="Doctrine">
-        <exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
-    </rule>
 </ruleset>

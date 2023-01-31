@@ -38,8 +38,8 @@ class SorterBuilderKeyIterator extends FilterIterator
 
     public function current(): string
     {
-        /** @var ReflectionMethod $reflectionMethod */
         $reflectionMethod = parent::current();
+        assert($reflectionMethod instanceof ReflectionMethod);
 
         return $this->toUnderscore($reflectionMethod->getName());
     }
