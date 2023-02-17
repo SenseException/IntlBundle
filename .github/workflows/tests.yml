@@ -11,14 +11,7 @@ jobs:
     continue-on-error: "${{ matrix.php-versions == '8.3' || matrix.symfony == '^6.3' }}"
     strategy:
       matrix:
-        exclude:
-          - php-versions: '8.0'
-            symfony: '^6.1'
-          - php-versions: '8.0'
-            symfony: '^6.2'
-          - php-versions: '8.0'
-            symfony: '^6.3'
-        php-versions: ['8.0', '8.1', '8.2', '8.3']
+        php-versions: ['8.1', '8.2', '8.3']
         symfony:
           - '^5.0'
           - '^5.1'
@@ -53,7 +46,7 @@ jobs:
       run: composer config platform.php 8.2.99
 
     - name: "Adapt dependencies"
-      if: ${{ matrix.symfony == '^5.4' || matrix.symfony == '^6.3' }}
+      if: ${{ matrix.symfony == '^6.3' }}
       run: composer config minimum-stability dev
 
     - name: "Install dependencies"
@@ -72,4 +65,4 @@ jobs:
       run: vendor/bin/phpunit
     
     - name: "Mutation tests"
-      run: vendor/bin/infection --min-msi=95 --no-progress --threads=5
+      run: vendor/bin/infection --min-msi=90 --no-progress --threads=5

@@ -4,6 +4,10 @@ New Symfony Bundle
 
 # 1.1.0
 
+## Drop PHP 8.0 support
+
+PHP 8.0 is not supported anymore.
+
 ## Drop support of Symfony 4
 
 Please update to Symfony 5 or newer.
