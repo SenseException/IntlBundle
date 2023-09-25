@@ -42,6 +42,8 @@ class SorterBuilderKeyIteratorTest extends TestCase
             'null_first',
             'null_last',
             'remove_null_position',
+            'keep_keys',
+            'omit_keys',
         ];
 
         self::assertEquals($expected, array_values($sorterKeys));
