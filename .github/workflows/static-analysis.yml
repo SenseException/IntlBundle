@@ -18,13 +18,14 @@ jobs:
         php-version: "8.1"
         extensions: "intl, xdebug"
 
-    - name: "Install dependencies"
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: "Install dependencies with Composer"
+      uses: "ramsey/composer-install@v2"
+      with:
+        composer-options: "--prefer-dist --no-progress --no-suggest"
 
     - name: "PHPStan"
-      run: vendor/bin/phpstan analyse
+      run: "vendor/bin/phpstan analyse"
 
     - name: "Psalm"
-      run: vendor/bin/psalm
+      run: "vendor/bin/psalm"
 
