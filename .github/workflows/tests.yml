@@ -8,7 +8,7 @@ jobs:
   tests:
 
     runs-on: ubuntu-latest
-    continue-on-error: "${{ matrix.php-versions == '8.3' || matrix.symfony == '^6.3' }}"
+    continue-on-error: "${{ matrix.php-versions == '8.3' || matrix.symfony == '^6.4' || matrix.symfony == '^7,0' }}"
     strategy:
       matrix:
         php-versions: ['8.1', '8.2', '8.3']
@@ -22,6 +22,8 @@ jobs:
           - '^6.1'
           - '^6.2'
           - '^6.3'
+          - '^6.4'
+          - '^7.0'
 
     steps:
     - uses: actions/checkout@v4
@@ -46,7 +48,7 @@ jobs:
       run: composer config platform.php 8.2.99
 
     - name: "Adapt dependencies"
-      if: ${{ matrix.symfony == '^6.3' }}
+      if: ${{ matrix.symfony == '^6.4' || matrix.symfony == '^7.0' }}
       run: composer config minimum-stability dev
 
     - name: "Install dependencies"
