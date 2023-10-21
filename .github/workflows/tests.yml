@@ -8,15 +8,11 @@ jobs:
   tests:
 
     runs-on: ubuntu-latest
-    continue-on-error: "${{ matrix.php-versions == '8.3' || matrix.symfony == '^6.4' || matrix.symfony == '^7,0' }}"
+    continue-on-error: "${{ matrix.php-versions == '8.3' || matrix.symfony == '^6.4' || matrix.symfony == '^7.0' }}"
     strategy:
       matrix:
         php-versions: ['8.1', '8.2', '8.3']
         symfony:
-          - '^5.0'
-          - '^5.1'
-          - '^5.2'
-          - '^5.3'
           - '^5.4'
           - '^6.0'
           - '^6.1'

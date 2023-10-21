@@ -8,7 +8,7 @@ New Symfony Bundle
 
 PHP 8.0 is not supported anymore.
 
-## Drop support of Symfony 4
+## Drop support of Symfony 4 and 5 STS
 
 Please update to Symfony 5 or newer.
 
