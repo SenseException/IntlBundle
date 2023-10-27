@@ -136,6 +136,8 @@ Available are the method names of the `Budgegeria\IntlSort\Sorter\Sorter` class 
 * tertiary_strength
 * quaternary_strength
 * identical_strength
+* keep_keys
+* omit_keys
 * order_by_asc
 * order_by_desc
 * order_by_keys
@@ -144,5 +146,6 @@ Available are the method names of the `Budgegeria\IntlSort\Sorter\Sorter` class 
 * null_last
 * remove_null_position
 
+It's possible that you're using an older version of Intl-Sort where methods didn't existed yet.
 Read more about the methods in the 
 [Sorter documentation](https://senseexception.github.io/intl-sort/sorter-builder.html).
