@@ -32,19 +32,21 @@ class SorterConfigPass implements CompilerPassInterface
             $locale = $sorterConfig['locale'] ?? $defaultLocale;
             unset($sorterConfig['locale']);
 
-            $factory    = $container->getDefinition('budgegeria_intl_bundle.sorter.factory.standard');
-            $definition = new Definition(Builder::class, [$locale, $factory]);
+            $factory           = $container->getDefinition('budgegeria_intl_bundle.sorter.factory.standard');
+            $builderDefinition = new Definition(Builder::class, [$locale, $factory]);
 
             foreach (array_keys($sorterConfig) as $methodName) {
-                $definition->addMethodCall($this->toCamelCase($methodName));
+                $builderDefinition->addMethodCall($this->toCamelCase($methodName));
             }
 
-            $container->setDefinition(self::SERVICE_FACTORY_PREFIX . $serviceSuffix, $definition);
+            $factoryServiceName = self::SERVICE_FACTORY_PREFIX . $serviceSuffix;
 
-            $definitionFactory = new Definition(Sorter::class);
-            $definitionFactory->setFactory([new Reference(self::SERVICE_FACTORY_PREFIX . $serviceSuffix), 'getSorter']);
+            $container->setDefinition($factoryServiceName, $builderDefinition);
 
-            $container->setDefinition(self::SERVICE_PREFIX . $serviceSuffix, $definitionFactory);
+            $factoryDefinition = new Definition(Sorter::class);
+            $factoryDefinition->setFactory([new Reference($factoryServiceName), 'getSorter']);
+
+            $container->setDefinition(self::SERVICE_PREFIX . $serviceSuffix, $factoryDefinition);
         }
     }
 
