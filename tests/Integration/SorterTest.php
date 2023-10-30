@@ -61,6 +61,13 @@ class SorterTest extends TestCase
     }
 
     /** @test */
+    public function factoryServiceNamesUsedInSorterServicesAreCreatedProperly(): void
+    {
+        self::assertTrue($this->createContainer()->has('budgegeria_intl_bundle.factory.sorter.my_sorter'));
+        self::assertTrue($this->createContainer()->has('budgegeria_intl_bundle.factory.sorter.sorter_wo_locale'));
+    }
+
+    /** @test */
     public function internalSorterConfigIsRemovedAfterContainerIsCompiled(): void
     {
         $this->expectException(ParameterNotFoundException::class);
