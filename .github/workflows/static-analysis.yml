@@ -1,4 +1,4 @@
-name: Static Analysis
+name: "Static Analysis"
 
 on:
   - "push"
@@ -7,10 +7,10 @@ on:
 jobs:
   analysis:
 
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: "actions/checkout@v4"
 
     - name: "Setup PHP Action"
       uses: "shivammathur/setup-php@v2"
