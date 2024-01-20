@@ -8,22 +8,18 @@ jobs:
   tests:
 
     runs-on: "ubuntu-latest"
-    continue-on-error: "${{ matrix.php-versions == '8.4' || matrix.symfony == '^7.1' }}"
+    continue-on-error: "${{ matrix.php-versions == '8.4' || matrix.symfony == '7.1.*' }}"
     strategy:
       matrix:
         php-versions: ['8.1', '8.2', '8.3']
         symfony:
-          - '^5.4'
-          - '^6.0'
-          - '^6.1'
-          - '^6.2'
-          - '^6.3'
-          - '^6.4'
-          - '^7.0'
+          - '5.4.*'
+          - '6.4.*'
+          - '7.0.*'
         exclude:
-          - symfony: '^7.0'
+          - symfony: '7.0.*'
             php-versions: '8.1'
-          - symfony: '^7.1'
+          - symfony: '7.1.*'
             php-versions: '8.1'
 
     steps:
@@ -45,7 +41,7 @@ jobs:
         extensions: "intl, xdebug"
 
     - name: "Adapt dependencies"
-      if: ${{ matrix.symfony == '^7.1' }}
+      if: ${{ matrix.symfony == '7.1.*' }}
       run: "composer config minimum-stability dev"
 
     - name: "Install dependencies"
