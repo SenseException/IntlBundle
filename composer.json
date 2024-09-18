@@ -24,7 +24,6 @@
     "require-dev": {
         "phpunit/phpunit": "^9.6",
         "phpstan/phpstan": "^1.12",
-        "phpstan/phpstan-phpunit": "^1.3",
         "infection/infection": "^0.27",
         "vimeo/psalm": "^5.22",
         "psalm/plugin-phpunit": "^0.18.4",
