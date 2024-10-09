@@ -15,6 +15,13 @@ use function is_string;
 use function preg_replace;
 use function strtolower;
 
+/**
+ * @template TKey
+ * @template T
+ * @template TIterator as ArrayIterator<int, ReflectionMethod>
+ *
+ * @extends FilterIterator<TKey, T, TIterator>
+ */
 class SorterBuilderKeyIterator extends FilterIterator
 {
     /** @phpstan-param class-string $className */
