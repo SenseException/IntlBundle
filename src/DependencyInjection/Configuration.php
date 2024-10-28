@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Budgegeria\Bundle\IntlBundle\DependencyInjection;
 
+use ArrayIterator;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterBuilderKeyIterator;
 use Budgegeria\IntlSort\Builder;
+use ReflectionClass;
+use ReflectionMethod;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -39,7 +42,8 @@ class Configuration implements ConfigurationInterface
             ->arrayPrototype()
             ->children();
 
-        foreach (new SorterBuilderKeyIterator(Builder::class) as $sorterConfigNames) {
+        $methods = new ArrayIterator($this->getClassMethods(Builder::class));
+        foreach (new SorterBuilderKeyIterator($methods) as $sorterConfigNames) {
             $sorterChildren->scalarNode($sorterConfigNames)->end();
         }
 
@@ -49,5 +53,17 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->end()
             ->end();
+    }
+
+    /**
+     * @phpstan-param class-string $className
+     *
+     * @phpstan-return list<ReflectionMethod>
+     */
+    private function getClassMethods(string $className): array
+    {
+        $reflectionClass = new ReflectionClass($className);
+
+        return $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
     }
 }

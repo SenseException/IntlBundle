@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Budgegeria\Bundle\IntlBundle\Tests\DependencyInjection\CompilerPass;
 
+use ArrayIterator;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterBuilderKeyIterator;
 use Budgegeria\IntlSort\Builder;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use ReflectionMethod;
 
 use function array_values;
 use function iterator_to_array;
@@ -15,7 +18,9 @@ class SorterBuilderKeyIteratorTest extends TestCase
 {
     public function testIterationContent(): void
     {
-        $sorterKeys = iterator_to_array(new SorterBuilderKeyIterator(Builder::class));
+        $sorterKeys = iterator_to_array(new SorterBuilderKeyIterator(
+            new ArrayIterator($this->getMethods(Builder::class)),
+        ));
         $expected   = [
             'enable_french_collation',
             'disable_french_collation',
@@ -47,5 +52,17 @@ class SorterBuilderKeyIteratorTest extends TestCase
         ];
 
         self::assertEquals($expected, array_values($sorterKeys));
+    }
+
+    /**
+     * @phpstan-param class-string $className
+     *
+     * @phpstan-return list<ReflectionMethod>
+     */
+    private function getMethods(string $className): array
+    {
+        $reflectionClass = new ReflectionClass($className);
+
+        return $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
     }
 }

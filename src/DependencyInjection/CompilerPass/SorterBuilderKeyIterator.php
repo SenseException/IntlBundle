@@ -6,7 +6,6 @@ namespace Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass;
 
 use ArrayIterator;
 use FilterIterator;
-use ReflectionClass;
 use ReflectionMethod;
 
 use function assert;
@@ -19,20 +18,10 @@ use function strtolower;
  * @template TKey
  * @template T
  * @template TIterator as ArrayIterator<int, ReflectionMethod>
- *
  * @extends FilterIterator<TKey, T, TIterator>
  */
 class SorterBuilderKeyIterator extends FilterIterator
 {
-    /** @phpstan-param class-string $className */
-    public function __construct(string $className)
-    {
-        $reflectionClass = new ReflectionClass($className);
-        $methods         = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
-
-        parent::__construct(new ArrayIterator($methods));
-    }
-
     public function accept(): bool
     {
         return ! in_array($this->current(), [
