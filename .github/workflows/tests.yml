@@ -4,19 +4,24 @@ on:
   - "push"
   - "pull_request"
 
+env:
+  SYMFONY_DEV: '7.3.*'
+  PHP_DEV: '8.5'
+
 jobs:
   tests:
 
     runs-on: "ubuntu-latest"
-    continue-on-error: "${{ matrix.php-versions == '8.5' || matrix.symfony == '7.2.*' }}"
+    continue-on-error: "${{ matrix.php-versions == env.PHP_DEV || matrix.symfony == env.SYMFONY_DEV }}"
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3', '8.4', '8.5']
         symfony:
           - '6.4.*'
           - '7.0.*'
           - '7.1.*'
           - '7.2.*'
+          - '7.3.*'
 
     steps:
     - uses: "actions/checkout@v4"
@@ -37,7 +42,7 @@ jobs:
         extensions: "intl, xdebug"
 
     - name: "Adapt dependencies"
-      if: ${{ matrix.symfony == '7.2.*' }}
+      if: ${{ matrix.symfony == env.SYMFONY_DEV }}
       run: "composer config minimum-stability dev"
 
     - name: "Install dependencies"
