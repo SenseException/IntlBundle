@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    bootstrap="./vendor/autoload.php"
-    backupGlobals="false" verbose="true"
-    beStrictAboutOutputDuringTests="true"
-    beStrictAboutChangesToGlobalState="true">
-  <coverage>
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-    <exclude>
-      <directory>src/Resources</directory>
-    </exclude>
-  </coverage>
-  <testsuite name="classes">
-    <directory suffix="Test.php">tests</directory>
-  </testsuite>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="./vendor/autoload.php"
+         executionOrder="random"
+         cacheDirectory=".phpunit.cache">
+<testsuite name="classes">
+  <directory>tests</directory>
+</testsuite>
+
+<coverage/>
+<source>
+  <include>
+    <directory suffix=".php">src</directory>
+  </include>
+  <exclude>
+    <directory>src/Resources</directory>
+  </exclude>
+</source>
 </phpunit>
