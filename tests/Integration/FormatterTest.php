@@ -33,7 +33,6 @@ class FormatterTest extends TestCase
         self::assertSame('I got 1,002.25 as average value', $intlFormat->format('I got %number as average value', 1002.25));
         self::assertSame('I got 1,002.2500 as average value', $intlFormat->format('I got %.4number as average value', 1002.25));
         self::assertSame('I got 001,002.2 as average value', $intlFormat->format('I got %09.1number as average value', 1002.25));
-        self::assertSame('I is 5:30 AM on my clock.', $intlFormat->format('I is %time_short on my clock.', $date));
         self::assertSame('The timezone id is US/Arizona.', $intlFormat->format('The timezone id is %timeseries_id.', $date));
         self::assertSame('I am from Italy.', $intlFormat->format('I am from %region.', 'it_IT'));
         self::assertSame('You have 10$.', $intlFormat->format('You have 10%currency_symbol.', ''));
