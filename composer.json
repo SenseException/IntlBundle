@@ -25,8 +25,8 @@
         "phpunit/phpunit": "^11.5",
         "phpstan/phpstan": "^2.1",
         "infection/infection": "^0.31.1",
-        "doctrine/coding-standard": "^13.0",
-        "squizlabs/php_codesniffer": "^3.12",
+        "doctrine/coding-standard": "^14.0",
+        "squizlabs/php_codesniffer": "^4.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-deprecation-rules": "^2.0"
     },
