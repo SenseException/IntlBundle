@@ -18,6 +18,6 @@ intl-sort 2.0 or higher comes with a [few breaking changes](https://github.com/S
 
 # 1.2.0
 
-## Drop support of Symfony 5
+## Drop support of Symfony 5, 7.0, 7.1, 7.2
 
-Please update to Symfony 6.4 or newer.
+Please update to Symfony 6.4 or 7.3 and newer.
