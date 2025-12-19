@@ -7,14 +7,17 @@ namespace Budgegeria\Bundle\IntlBundle\DependencyInjection;
 use ArrayIterator;
 use Budgegeria\Bundle\IntlBundle\DependencyInjection\CompilerPass\SorterBuilderKeyIterator;
 use Budgegeria\IntlSort\Builder;
+use Override;
 use ReflectionClass;
 use ReflectionMethod;
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    /** @phpstan-return TreeBuilder<'array'> */
+    #[Override]
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('budgegeria_intl');
@@ -26,7 +29,8 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    private function buildGeneric(NodeDefinition $node): void
+    /** @phpstan-param ArrayNodeDefinition<TreeBuilder<'array'>> $node */
+    private function buildGeneric(ArrayNodeDefinition $node): void
     {
         $node
             ->children()
@@ -35,7 +39,8 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    private function buildSorter(NodeDefinition $node): void
+    /** @phpstan-param ArrayNodeDefinition<TreeBuilder<'array'>> $node */
+    private function buildSorter(ArrayNodeDefinition $node): void
     {
         $sorterChildren = $node->children()
             ->arrayNode('sorter')
@@ -44,7 +49,7 @@ class Configuration implements ConfigurationInterface
 
         $methods = new ArrayIterator($this->getClassMethods(Builder::class));
         foreach (new SorterBuilderKeyIterator($methods) as $sorterConfigNames) {
-            $sorterChildren->scalarNode($sorterConfigNames)->end();
+            $sorterChildren->scalarNode((string) $sorterConfigNames)->end();
         }
 
         $sorterChildren->scalarNode('locale')->end();

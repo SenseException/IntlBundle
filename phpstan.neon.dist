@@ -3,13 +3,6 @@ parameters:
     paths:
         - "%currentWorkingDirectory%/src/"
         - "%currentWorkingDirectory%/tests/"
-    ignoreErrors:
-        -
-            message: '#Call to an undefined method [a-zA-Z0-9\\_]+::children\(\)#'
-            path: %currentWorkingDirectory%/src/DependencyInjection/Configuration.php
-        -
-            message: '#Cannot call method [a-zA-Z]+\(\) on mixed#'
-            path: %currentWorkingDirectory%/src/DependencyInjection/Configuration.php
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - phar://phpstan.phar/conf/bleedingEdge.neon
