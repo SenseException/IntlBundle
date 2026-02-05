@@ -12,7 +12,7 @@
     ],
     "require": {
         "ext-intl": "*",
-        "php": "^8.2",
+        "php": "^8.3",
         "senseexception/intl-format": "^2.3",
         "senseexception/intl-sort": "^2.0",
         "symfony/http-kernel": "^6.4 || ^7.3 || ^8.0",
