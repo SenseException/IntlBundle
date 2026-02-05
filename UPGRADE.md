@@ -1,6 +1,12 @@
-# 1.0.0
+# 1.2.0
 
-New Symfony Bundle
+## Drop support of Symfony 5, 7.0, 7.1, 7.2
+
+Please update to Symfony 6.4 or 7.3 and newer.
+
+## Drop PHP 8.1 support
+
+PHP 8.1 is not supported anymore.
 
 # 1.1.0
 
@@ -16,8 +22,6 @@ Please update to Symfony 5 or newer.
 
 intl-sort 2.0 or higher comes with a [few breaking changes](https://github.com/SenseException/intl-sort/blob/2.0.0/UPGRADE.md).
 
-# 1.2.0
+# 1.0.0
 
-## Drop support of Symfony 5, 7.0, 7.1, 7.2
-
-Please update to Symfony 6.4 or 7.3 and newer.
+New Symfony Bundle
