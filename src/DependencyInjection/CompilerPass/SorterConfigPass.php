@@ -17,8 +17,8 @@ use function ucwords;
 
 class SorterConfigPass implements CompilerPassInterface
 {
-    private const SERVICE_PREFIX         = 'budgegeria_intl_bundle.sorter.';
-    private const SERVICE_FACTORY_PREFIX = 'budgegeria_intl_bundle.factory.sorter.';
+    private const string SERVICE_PREFIX         = 'budgegeria_intl_bundle.sorter.';
+    private const string SERVICE_FACTORY_PREFIX = 'budgegeria_intl_bundle.factory.sorter.';
 
     public function process(ContainerBuilder $container): void
     {
