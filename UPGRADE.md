@@ -1,8 +1,8 @@
 # 1.3.0
 
-## Drop PHP 8.2 support
+## Drop PHP 8.2 and 8.3 support
 
-PHP 8.2 is not supported anymore.
+PHP 8.2 and 8.3 are not supported anymore.
 
 ## Drop support of Symfony 7.3
 
